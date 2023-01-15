@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -22,10 +23,13 @@ class Server {
     const __dirname = path.dirname(path.dirname(__filename));
 
     this.app.use(express.static(path.join(__dirname, "client")));
+    this.app.use(cors());
     this.app.use(express.json());
   }
 
   routes() {
+    console.log("routes");
+
     this.app.use("/subscribe", subscribe);
   }
 
